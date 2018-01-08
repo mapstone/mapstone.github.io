@@ -75,12 +75,12 @@ header.masthead .masthead-content {
 
 header.masthead .masthead-content .masthead-heading {
   font-size: 4rem;
-  -webkit-text-stroke: 1px grey;
+  -webkit-text-stroke: 1px lightgrey;
 }
 
 header.masthead .masthead-content .masthead-subheading {
   font-size: 2.5rem !important;
-  -webkit-text-stroke: 1px grey;
+  -webkit-text-stroke: 1px lightgrey;
 }
 
 header.masthead .bg-circle {
