@@ -58,11 +58,14 @@ header.masthead {
   overflow: hidden;
   padding-top: calc(7rem + 72px);
   padding-bottom: 7rem;
-  background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
+  background-image: url(../img/river-large.jpg); 
+  background-height:100%;
+  background-size: cover;
+  /*background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;
-  background-size: cover;
+  background-size: cover;*/
 }
 
 header.masthead .masthead-content {
@@ -72,10 +75,12 @@ header.masthead .masthead-content {
 
 header.masthead .masthead-content .masthead-heading {
   font-size: 4rem;
+  -webkit-text-stroke: 1px grey;
 }
 
 header.masthead .masthead-content .masthead-subheading {
-  font-size: 2rem;
+  font-size: 2.5rem !important;
+  -webkit-text-stroke: 1px grey;
 }
 
 header.masthead .bg-circle {
@@ -131,18 +136,18 @@ header.masthead .bg-circle-4 {
 }
 
 .btn-primary {
-  background-color: #ee0979;
-  border-color: #ee0979;
+  background-color: royalblue;
+  border-color: darkgreen;
 }
 
-.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+/*.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
   background-color: #bd0760 !important;
   border-color: #bd0760 !important;
 }
 
 .btn-primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(238, 9, 121, 0.5);
-}
+}*/
 
 .btn-secondary {
   background-color: #ff6a00;
