@@ -14,7 +14,7 @@ h4,
 h5,
 h6 {
   font-family: 'Catamaran';
-  font-weight: 800 !important;
+  /*font-weight: 800 !important;*/
 }
 
 .btn-xl {
