@@ -1,3 +1,10 @@
+
+.plr-5 {
+  padding-left:3rem;
+  padding-right:3rem;
+  padding-top:3rem;
+}
+
 .fa {
   padding: 20px;
   font-size: 30px;
@@ -7,6 +14,53 @@
   margin: 5px 2px;
   border-radius: 50%;
   box-sizing:content-box;
+}
+
+.subtitle {
+    color: #656565;
+    margin-top:0px;
+    margin-bottom:5px;
+}
+
+.articlesContainer{
+  display: flex;
+  justify-content:center;
+}
+
+.articles {
+  max-width:700px;
+}
+
+.sectionTitle {
+      margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.justify {
+  text-align: justify;
+}
+
+.articleDescriptions {
+      overflow: hidden;
+    height: 200px;
+}
+
+.articleDescriptionsLong {
+      overflow: hidden;
+    height: 270px;
+}
+
+.subtleHeading {
+    font-size: 12px;
+    font-weight: 700;
+    color: #959595;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.article {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .fa:hover {

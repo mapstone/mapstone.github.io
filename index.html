@@ -4,15 +4,17 @@
   <head>
 
     <!-- The  website favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="http://mapstone.org/favicons/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-
+    <!-- Some "meta" information -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Laura Mapstone</title>
+
+    <!-- We use a library called jquery -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,13 +24,61 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    
+    <!-- For pretty alert messages -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <!-- For a pretty timeline -->
+    <!-- <link rel="stylesheet" href="plugins/timeline/assets/css/style.css"> -->
+
+    <!-- That cool map library -->
+    <link href="jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css"/>    
+    <script src="jqvmap/jquery.vmap.min.js"></script>
+    <script src="jqvmap/maps/jquery.vmap.world.js" charset="utf-8"></script>
+    <script src="mapdata.js"></script>
+    <script>
+      jQuery(document).ready(function () {
+        jQuery('#vmap').vectorMap({
+          map: 'world_en',
+          backgroundColor: 'white',
+          color: '#ffffff',
+          hoverOpacity: 0.7,
+          selectedColor: '#666666',
+          enableZoom: false,
+          showTooltip: true,
+          scaleColors: ['#C8EEFF', '#006491'],
+          values: sample_data,
+          normalizeFunction: 'polynomial',
+          selectedColor:null,
+          onRegionClick: function(element, code, region) {
+            `var message = 'You clicked '
+                + region
+                + ' which has the code: '
+                + code.toUpperCase();`
+            var message = 'Just having fun with javascript. Coming soon: work experience in each country'
+
+            Swal.fire(message)
+          }
+        });
+      });
+    </script>
 
     <!-- Custom styles for this template -->
     <link href="css/one-page-wonder.css" rel="stylesheet">
 
     <!-- My styles -->
     <link href="css/laura.css" rel="stylesheet">
+
+    <style type="text/css">
+      .mobileHide { display: justify; } 
+
+      /* Smartphone Portrait and Landscape */ 
+      @media only screen 
+        and (min-device-width : 320px) 
+        and (max-device-width : 480px){ 
+         .mobileHide { display: none;}
+      }
+    </style>
+
 
   </head>
 
@@ -37,10 +87,30 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Laura Mapstone</a>
+        <!-- Brand -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Laura Mapstone</a>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+              <a class="nav-link" href="#bio">Bio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#awards">Awards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#articles">Articles</a>
+            </li>
+          </ul>
+        </div>
+
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -55,33 +125,34 @@
       <div class="masthead-content">
         <div class="container">
           <h1 class="masthead-heading mb-0">Laura Mapstone Scott</h1>
-           <!--<h2 class="masthead-subheading mb-0">Water and Environmental Resource Management Consultant</h2>-->
+           <h2 class="masthead-subheading mb-0">International Policy</h2>
           <a href="#contact" class="btn btn-primary btn-xl rounded-pill mt-5">Contact</a>
         </div>
       </div>
     </header>
 
-    <!--<section>
+
+    
+      <!-- <section id="bio">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-6 order-lg-2">
-            <div class="p-5">
+
+          <div class="col-lg-6 order-lg-1">
+            <div class="plr-5">
               <img class="img-fluid rounded-circle" src="img/pipes-sq.jpg" alt="">
             </div>
           </div>
-          <div class="col-lg-6 order-lg-1">
-            <div class="p-5">
-              <h2 class="display-4">About</h2>
-              <p>Laura has six years experience coordinating international policy programs and research related to water and environmental stewardship.</p> 
-
-              <p>Scottish but born and raised in Hong Kong, Laura has lived and worked across Jordan, Egypt, China, United Kingdom, Uganda and Bangladesh. Recently relocated to Silicon Valley.</p>
+          <div class="col-lg-6 order-lg-2" >
+              <h2 style="margin-top:2rem"class="display-4">Laura Mapstone</h2>
+              <p style="margin-bottom:0rem; max-width:450px" class="justify">I was born and raised in Hong Kong. After finishing my MSc, I worked with Oxfam and the Ministry of Water in Jordan. I am currently working as a consultant leading qualitative and quantitative research and analysis + policy and strategy developnent for social impact startups. 
+Recently I worked on <a href="https://myeyes.ai">MyEyes.ai</a> which developed the state of the art visual acuity exam. I am an advisor for Walibox which is developing smart irrigation meters. 
+</p> 
             </div>
-          </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section>
+    <!--<section>
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6">
@@ -91,18 +162,127 @@
           </div>
           <div class="col-lg-6">
             <div class="p-5">
-              <h2 class="display-4">Consulting</h2>
-              <p> Water risks to business are intensifying as is the imperative to demonstrate sound stewardship of environmental resources – to shareholders, communities, customers and consumers.</p> 
+              <h2 class="display-4">Policy Researcher, King’s College London  </h2>
+              <p> Principal Research Manager Led research team funded by the Royal Geographical Society analyzing gender policy in engineering projects in Syrian refugee camps in Jordan. Managed team of 5 researchers, translators and data analysts.   </p>  
 
-            </p> Corporate water stewardship allows companies to identify and manage these business risks, improve efficiency and mitigate adverse impacts on ecosystems as well as contribute to more sustainable environmental management. </p> 
+ <p>Policy Researcher Advised Oxfam GB on the design and implementation of s $3M urban water governance program in Zarqa, Jordan. Managed stakeholder engagement and public partnerships to reduce sector losses by 30%  </p>
 
-              <p>Consulting services are available for private and public sector clients. Please contact directly for more information. </p>
+ <p>Conference Director Created and managed conference, <a href="https://www.kcl.ac.uk/sspp/departments/geography/research/Research-Domains/Contested-Development/newseevents/newsrecords/KCL-WASH-Week.pdf">WASH week at kings</a>, on engineering in emergencies and natural disasters. Led speaker selection, panel facilitation, marketing and strategic partnership among universities/experts  </p>    
+      
+ <p>Lead Author Researched climate change policy with the Hindu Kush Himalayan Monitoring & Assessment Program </p>
+
+ <p>Research Assistant Conducted extensive research and fieldwork on agricultural policy in Jordan Valley. 
+ </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>-->
+
+    <section id="awards">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+              <center>
+              <h2 class="display-4 sectionTitle">Awards</h2>
+            </center>
+              <center>
+                <p>
+                  <a href="https://fi.co/fellowships">Founders Intitute Female Founder Fellowship</a>, 2018
+                </p>
+                <p>
+                  <a href="https://web.archive.org/web/20170507061637/http://www.kcl.ac.uk/sspp/departments/geography/study/masters/dissertations/best-thesis-awards.aspx">Kings College London, MSc Water: Science and Governance - Best Award Thesis</a>, 2015
+                  
+                </p>
+                <p>
+                  <a href="https://blogs.kcl.ac.uk/water/2015/05/17/exploring-jordanian-water-issues-with-the-rgs-geographical-fieldwork-grants/">Royal Geographical Society Fieldswork Grant</a>, 2015
+                </p>
+                
+                <p>
+                  <a href="https://www.kcl.ac.uk/campuslife/ke/awards/klps-award">King's Leadership and Professional Skills Award</a>, 2015
+                </p>
+
+                <p>
+                  <a href="https://www.kcl.ac.uk/study/undergraduate/fees-and-funding/student-funding/other/travel-award">King's Lightfoot Scholarship</a>, 2015
+                </p>                
+              </center>
           </div>
         </div>
       </div>
     </section>
 
+      <div class="container" id="articles">
+        <div class="row align-items-center">
+          <div class="col-lg-12" >
+              <center>
+                <h2 class="display-4 sectionTitle">Select Articles</h2>
+              </center>
+
+              <div class="articlesContainer">
+              <div class="articles">
+              <!-- article -->
+              <div class="media article">
+                <a ><img style="width:200px" src="img/clickbait.png" class="mr-3" alt="..."></a>
+                <div class="media-body articleDescription">
+                  <h5 class="mt-0"><a >Borderline Content in Social Media in At Risk Countries</a></h5>
+                   <!-- <p class="subtitle">Giovanna Gioli, Ganesh Thapa, ... , Laura Mapstone Scott</p> -->
+                   <p class="justify mobileHide">[Coming soon] The challenges facing social networks in 2019 around the world.</p>
+                </div>
+              </div> <!-- end article -->
+
+              <!-- article -->
+              <div class="media article">
+                <a href="https://www.amazon.com/Hindu-Kush-Himalaya-Assessment-Sustainability/dp/3319922874/ref=sr_1_1?keywords=The+Hindu+Kush+Himalaya+Assessment&qid=1558910417&s=gateway&sr=8-1"><img style="width:200px" src="https://media.springernature.com/w306/springer-static/cover-hires/book/978-3-319-92288-1" class="mr-3" alt="..."></a>
+                <div class="media-body articleDescriptionsLong">
+                  <h5 class="mt-0"><a href="https://link.springer.com/chapter/10.1007/978-3-319-92288-1_12">Understanding and Tackling Poverty and Vulnerability in Mountain Livelihoods in the Hindu Kush Himalaya</a></h5>
+                   <!-- <p class="subtitle">Giovanna Gioli, Ganesh Thapa, ... , Laura Mapstone Scott</p> -->
+                   <p class="justify mobileHide">I authord a chapter of The Hindu Kush Himalayanlaya Assessment which critically reviews the existing knowledge on livelihoods, poverty, and vulnerability in the Hindu Kush Himalaya (HKH). Development in mountain areas and the practices of people in these areas are uniquely conditioned by distinct characteristics that we term “mountain specificities”. Some of these specificities—such as inaccessibility, fragility, and marginality—constrain development. Others—such as abundant biological diversity, ecological niches, and adaptation mechanisms—present development opportunities ...</p>
+                </div>
+              </div> <!-- end article -->
+
+              <!-- article -->
+              <div class="media article">
+                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0305750X15002909"><img style="width:200px" src="img/waterUserAssociationsSq.jpg" class="mr-3" alt="..."></a>
+                <div class="media-body articleDescriptions">
+                  <h5 class="mt-0"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0305750X15002909">Water User Associations and the Politics of Water in Jordan</a>, Journal of World Development</h5>
+                  <!-- <p class="subtleHeading">Journal of World Development, 2015</p> -->
+                   <p class="justify mobileHide">Jordan is often held up as one of the most water scarce countries in the world. The water scarcity in the country is not an absolute, but rather a politically mediated reality. The cubic meter numbers for Jordan may very well point toward absolute scarcity, but those numbers hide as much as they reveal. They hide the worlds of meaning, emotion, and social interactions centered around water ...</span>
+                </div>
+              </div> <!-- end article -->
+
+              <!-- article -->
+              <div class="media article">
+                <a href="papers/dissertation.pdf"><img style="max-width:200px" src="img/hostCommunity.jpg" class="mr-3" alt="..."></a>
+                <div class="media-body articleDescriptions">
+                  <h5 class="mt-0"><a href="papers/dissertation.pdf">Gendered participation in community-level water governance in Syrian refugee host communities in Jordan</a></h5>
+                   <p class="justify mobileHide">This publication analyses gendered household and community relations and management systems over water in the Russeifa District of the Zarqa Governorate in Jordan to predict how the creation of new participatory spaces for community-level water governance would be received and utilized. Gendered ...</p>
+                </div>
+              </div> <!-- end article -->
+            </div>
+          </div>
+            </div>
+        </div>
+      </div>
+
+    <section>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+              <center>
+              <h2 class="display-4 sectionTitle">International Experience</h2>
+            </center>
+              <div id="vmap" style="width: 100%; height: 500px;"></div>
+              <!--<center>
+                <p>
+                  I quantified my interactions with people from each country in the world. Click on countries for work experience.
+                </p>
+              </center>-->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--
     <section>
       <div class="container">
         <div class="row align-items-center">
@@ -138,15 +318,17 @@
         </h4>
         <br/>
         <p class="m-0 text-center text-white">
-          Copyright &copy; Laura Mapstone Scott 2016
+          Copyright &copy; Laura Mapstone Scott 2019
         </p>
       </div>
       <!-- /.container -->
     </footer>
 
+    <script src="plugins/timeline/assets/js/main.js"></script>
+
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+    <!-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
   </body>
 
