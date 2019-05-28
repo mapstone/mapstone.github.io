@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- The  website favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+
+    <!-- Some "meta" information -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Digital Peacebuilding</title>
+
+    <!-- We use a library called jquery -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- For pretty alert messages -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <!-- For a pretty timeline -->
+    <!-- <link rel="stylesheet" href="plugins/timeline/assets/css/style.css"> -->
+
+    <!-- That cool map library -->
+    <link href="../jqvmap/jqvmap.css" media="screen" rel="stylesheet" type="text/css"/>    
+    <script src="../jqvmap/jquery.vmap.min.js"></script>
+    <script src="../jqvmap/maps/jquery.vmap.world.js" charset="utf-8"></script>
+    <script src="../mapdata.js"></script>
+    <script>
+      jQuery(document).ready(function () {
+        jQuery('#vmap').vectorMap({
+          map: 'world_en',
+          backgroundColor: 'white',
+          color: '#ffffff',
+          hoverOpacity: 0.7,
+          selectedColor: '#666666',
+          enableZoom: false,
+          showTooltip: true,
+          scaleColors: ['#C8EEFF', '#006491'],
+          values: sample_data,
+          normalizeFunction: 'polynomial',
+          selectedColor:null,
+          onRegionClick: function(element, code, region) {
+            `var message = 'You clicked '
+                + region
+                + ' which has the code: '
+                + code.toUpperCase();`
+            var message = 'Just having fun with javascript. Coming soon: work experience in each country'
+
+            Swal.fire(message)
+          }
+        });
+      });
+    </script>
+
+    <!-- Custom styles for this template -->
+    <link href="../css/one-page-wonder.css" rel="stylesheet">
+
+    <!-- My styles -->
+    <link href="../css/laura.css" rel="stylesheet">
+
+    <style type="text/css">
+      .mobileHide { display: justify; } 
+
+      /* Smartphone Portrait and Landscape */ 
+      @media only screen 
+        and (min-device-width : 320px) 
+        and (max-device-width : 480px){ 
+         .mobileHide { display: none;}
+      }
+    </style>
+
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+      <div class="container">
+        <!-- Brand -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="../index.html">mapstone.org</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#awards">Awards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#articles">Articles</a>
+            </li> -->
+          </ul>
+        </div>
+
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section style="margin-top: 50px">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12">
+            <div class="articlesContainer">
+              <!-- Start of article -->
+              <div class="articles">
+                <center>
+                  <h1 class="display-4 sectionTitle">Peacebuilding's Digital Future</h1>
+                  <p class="subtleHeading">By Laura Mapstone-Scott and Chris Piech</p>
+                  <img style="width:200px" src="../img/clickbait.png" class="mr-3" alt="...">
+                  <p><i>උගුලක් in Sinhala</i></p>
+                  <hr/>
+                </center>
+
+                <p class="justify">Facebook’s mission is to bring people together and build relationships, which is one of the central tenants of peacebuilding. Gravida montes quam feugiat lorem. Aptent magnis nulla facilisi nostra. Suscipit auctor quisque pretium odio tortor tortor imperdiet cubilia conubia quisque condimentum? Nascetur nisi mi facilisis nibh cursus consequat congue ridiculus etiam. Massa nulla feugiat penatibus nam maecenas augue nisi nec gravida. Senectus aliquet dapibus curae; consectetur duis urna tortor nibh. Nulla ac montes nec lectus vivamus posuere ornare fusce viverra penatibus est. Volutpat proin penatibus eget amet gravida natoque. Tempus, justo vivamus magna habitasse odio posuere. Primis, maecenas vitae vehicula.</p>
+
+                <h2>Ai for peacebuilding</h2>
+
+                <p class="justify">Facebook runs one of the forefront labs in machine learning (AI), headed by recent Turing award winner Yan LeCun and backed by one of the largest datacenters ever built. These resources present an opportunity to think about how AI can play a role in the digital future of peacebuilding. In the space of AI for peacebuilding on social media platforms, there seem to be two central AI challenges:
+                  <ol>
+                    <li>Auto-flag harmful and borderline content</li>
+                    <li>Predict which posts will bring people together</li>
+                  </ol>
+
+                <p class="justify">
+                  <b>Which posts will bring people together?</b> Most of the field of AI for peacebuilding has focused on the first problem (auto-flagging harmful content). However, the study of the history of peacebuilding shows the importance of reconciliation and exposure. This objective fits with Facebook's mission which is to "to bring people together." Facebook has already stated that its Newsfeed algorithm will "prioritize posts that spark conversations and meaningful interactions between people" [<a href="ref3">3</a>]. A peacebuilding variation of this goal could be to prioritize posts which create a positive <b>concilitory</b> interaction between people of opposing ethnic/political affiliations. Rigourously defining this objective remains an open problem as does defining who counts as being part of a monitored ethnic/political affiliation. A naive definition might upweight posts that foster a <a href="https://www.nytimes.com/2018/04/16/science/friendship-discrimination.html">common enemy</a>, potentially simply redirecting othering. This is especially easy to imagine in an algorithm where the content of a post is not taken into consideration, only whether or not it was liked by people of different ethnic affiliations. [Insert other insights]. 
+                </p>
+                
+                <p class="justify"><b>Both tasks are hard</b>. They have similar, daunting technical obstacles as both require nuanced understanding of the <i>content</i> of posts and messages. Specifically (1) It is famously hard for computer to understand human language (2) Posts in at-risk countries are often written in languages which modern AI algorithms have trouble understanding, such as Arabic or Swahili, or even in tribal languages such as Luo, Kikuyu, <a href="https://en.wikipedia.org/wiki/Rohingya_language">Rohingya</a> which (a) don't have much online data from which machines can learn and (b) sometimes don't have written forms resulting in inconsistent transliteration into digital platforms (3) A lot of content is built into images and while <a href="https://en.wikipedia.org/wiki/Optical_character_recognition">optical character recognition</a> is increasingly good, it is still challenging (4) <a href="https://openai.com/blog/adversarial-example-research/">Adversarial Networks</a> will become ever more competent at modifying posts to trick automatic moderators. (5) And last, but not least, subtle understanding of cultural context is well beyond the capabilities of any contemporary artificial intelligence algorithm. What counts as <a href="https://en.wikipedia.org/wiki/Reappropriation">re-appropriated</a> languge?</p>
+
+                <p class="justify">In the Rwandan Genocide, the call to kill Hutis was broadcast by RTLM radio. We now understand that the calls for genocide were hidden in dogwhistles and placed alongside sophisticated use of humor and popular Zairean music [<a href="#ref1">1</a>]. Detecting the modern equivalent, perhaps a handwritten meme in Burmese on a social media platform, remains difficult. 
+                </p>
+
+                <p class="justify">
+                  <b>There is reason to hope.</b> Facebook, and other social media companies have already shown initial success at detecting harmful or borderline content using a combination of machine learning algorithms and human raters. The monotonic increase in data and algorithmic sophistication suggests that we will make progress on parts of the task. For the challenges which will may have small amounts of data (understanding shifting cultural context, minority languages) breakthroughs in "<a href="https://web.mit.edu/cocosci/Papers/Science-2015-Lake-1332-8.pdf">one-shot learning</a>" are encouraging. If human's can acquire understanding of a subject after small amounts of training, perhaps AI will one day be able to as well. Along the way we may learn more about how extreemists operate.
+                </p>
+
+                <p>
+                  <center>
+                    <img style="max-width:500px" src="../img/isis-rand.png"></img>
+                    <p><i>Figure: RAND analyzed the content of tweets from individuals associated with the Islamic State (<a href="https://en.wikipedia.org/wiki/Islamic_State_of_Iraq_and_the_Levant">Daesh</a>) and was able to show meaningful subgroups [<a href="#ref2">2</a>]</i></p>
+                  </center>
+                </p>
+
+                <h2>Other examples</h2>
+
+                <p>
+                  Elections in Zimbabwe on Ushahidi:
+                <iframe width="100%" height="500" src="https://zhrc365.ushahidi.io/views/map" frameborder="0" allowfullscreen></iframe>
+                </p>
+
+                <!-- <p>
+                  Post election hate speech in USA
+                  <iframe width="100%" height="500" src="https://documenthate.ushahidi.io/views/map" frameborder="0" allowfullscreen></iframe>
+                </p> -->
+
+                <hr/>
+                <p>
+                <span id="ref1">[1]</span> <a href="https://www.jstor.org/stable/20788929?seq=1#page_scan_tab_contents">Making Violence Ordinary: Radio, Music and the Rwandan Genocide</a>
+              </p>
+              <p>
+                <span id="ref2">[2]</span> <a href="https://www.rand.org/pubs/external_publications/EP67728.html">Social Media in Africa. A Double-Edged Sword for Security and Development: Executive Summary</a>
+              </p>
+
+              <p>
+                <span id="ref3">[3]</span> <a href="https://newsroom.fb.com/news/2018/01/news-feed-fyi-bringing-people-closer-together/">Facebook Newsroom: Bringing People Closer Together</a>
+              </p>
+
+
+                <div style="margin-bottom: 40px"/>
+
+              </div><!-- End of article -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-black">
+      <div class="container" id="contact">
+       
+        <p class="m-0 text-center text-white">
+          <a href="https://www.linkedin.com/in/lauramapstone/" class="fa fa-linkedin"></a>
+          <a href="mailto:laura@mapstone.org" class="fa fa-envelope"></a>
+          <a href="https://twitter.com/lauramap" class="fa fa-twitter"></a>
+        </p>
+        <br/>
+        <h4 class="text-center text-white" style="font-weight:0!important">
+          laura@mapstone.org
+        </h4>
+        <br/>
+        <p class="m-0 text-center text-white">
+          Copyright &copy; Laura Mapstone Scott 2019
+        </p>
+      </div>
+      <!-- /.container -->
+    </footer>
+    
+  </body>
+
+</html>
