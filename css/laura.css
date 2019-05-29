@@ -42,7 +42,7 @@
 
 .articleDescriptions {
       overflow: hidden;
-    height: 200px;
+    max-height: 200px;
 }
 
 .articleDescriptionsLong {
