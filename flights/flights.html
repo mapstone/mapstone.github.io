@@ -1,0 +1,249 @@
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script src="flight.js"></script>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Meet Me Halfway</h1>
+				<h5>By Laura Mapstone</h5>
+				<hr/>
+				<i>2 travelers want to meet on:</i>
+				 <input id="date" type="text" class="form-control" placeholder="eg 2019-10-01">
+				Start 1: <input id="start1" type="text" class="form-control" placeholder="eg SFO">
+				Start 2: <input id="start2" type="text" class="form-control" placeholder="eg NBO">
+				<br/>
+				<button onclick="onClick()" type="button" class="btn btn-primary">Search</button>
+				<hr/>
+				
+				  <i><span id="statusTxt"></span></i><br/>
+				<div id="spinner" style="display:none" class="spinner-border" role="status">
+				  <span class="sr-only">Loading...</span>
+				</div>
+				<div id="results">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script>
+
+	// some global variables
+	var results = {}
+	var nResults = 0
+	var starts = null
+	var N_STARTS = 2
+
+	// rate limit: 400 per minute (aka 6.6 per second, wait 160ms between requests?!?)
+	window.onload = function() {
+
+		
+	}
+
+	function onClick() {
+		$("#spinner").show()
+		$("#statusTxt").html('looking up 1000+ destinations (this will take a minute)...')
+		$("#results").html('')
+		setTimeout(runSearch, 10)
+		setTimeout(updateText, 5000)
+	}
+
+	function updateText() {
+		$("#statusTxt").html('refining search...')
+		setTimeout(updateText2, 5000)
+	}
+
+	function updateText2() {
+		$("#statusTxt").html('merging results...')
+	}
+
+	function runSearch() {
+		var date = $("#date").val()
+		starts = []
+		for(var i = 1; i <= N_STARTS; i++) {
+			var v = $("#start" + i).val()
+			if(v != '') {
+				starts.push(v)
+			}
+		
+		}
+		for(meetCode in PLACES) {
+			var end = meetCode + '-sky'
+			for (var i = 0; i < starts.length; i++) {
+				var start = starts[i] + '-sky'
+				if(start == end) continue
+				var request = {
+					"inboundDate": {},
+					"cabinClass": 'economy',
+					"children": 0,
+					"infants": 0,
+					"country": 'US',
+					"currency": 'USD',
+					"locale": 'en-US',
+					"originPlace": start,
+					"destinationPlace": end,
+					"outboundDate": date,
+					"adults": 1
+				}
+				sleep(20)
+				makeFlightRequest(request, flightResponse)
+
+			}
+		}
+		console.log('all sent...')
+	}
+
+	function makeHtml(airport, cost, links) {
+		var placeName = PLACES[airport] 
+		var linksHtml = ""
+		for (var i = 0; i < links.length; i++) {
+			var url = links[i]['url']
+			var from = links[i]['from']
+			var price = links[i]['price']
+			linksHtml += `<a href="${url}" rel="nofollow">From ${from} (\$${price.toFixed(2)})</a>`
+			if(i != links.length - 1) {
+				linksHtml += ', '
+			}
+		}
+		return `
+		<div class="card">
+			<div class="card-body">
+		    <h5 class="card-title">${placeName} (${airport}) \$${cost.toFixed(2)}</h5>
+		    ${linksHtml}
+		  </div>
+		</div>
+		`
+	}
+
+	function allResultsLoaded() {
+		var htmlToCost = {} // we are going to sort this and display in order
+		for(var middle in results) {
+			var cost = 0
+			var links = []
+			var isValid = true
+			for (var i = 0; i < starts.length; i++) {
+				var start = starts[i]
+				if(!(start in results[middle])) {
+					isValid = false
+					break
+				}
+
+				var itinerary = results[middle][start]
+				if(!('url' in itinerary) || !('price' in itinerary)) {
+					isValid = false
+					break
+				}
+				cost += itinerary['price']
+				links.push({
+					'from':start,
+					'url':itinerary['url'],
+					'price':itinerary['price']
+				})
+			}
+			if(isValid){
+				var html = makeHtml(middle, cost, links)
+				htmlToCost[html] = cost
+			}
+		}
+		var sorted = sortMap(htmlToCost)
+		var resultsHtml = ''
+		for (var i = 0; i < sorted.length; i++) {
+			resultsHtml += sorted[i][0]
+		}
+		$("#results").html(resultsHtml)
+	}
+
+	function addResult(result) {
+		$("#statusTxt").html('')
+		$("#spinner").hide()
+		nResults += 1
+		console.log(nResults)
+		let from = result['from']
+		let dest = result['to']
+		if(!(dest in results)) {
+			results[dest] = {}
+		}
+		results[dest][from] = result
+		allResultsLoaded()
+	}
+
+	function getBestOption(pricingOptions) {
+		var minCost = null
+		var minOption = null
+		for (var i = 0; i < pricingOptions.length; i++) {
+			var option = pricingOptions[i]
+			var price = option['Price']
+			if(minCost == null) {
+				minCost = price
+				minOption = option
+			}
+			if(price != null && price < minCost) {
+				minCost = price
+				minOption = option
+			}
+		}
+		return minOption
+	}
+
+	function makePlaceMap(placeList) {
+		var placeMap = {}
+		for (var i = 0; i < placeList.length; i++) {
+			var place = placeList[i]
+			if(!('Code' in place)) continue
+			var id = place['Id']
+			var code = place['Code']
+			var name = place['Name']
+			placeMap[id] = {
+				'Code':code,
+				'Name':name
+			}
+			if(code.length > 2 && !(code in PLACES)) {
+				PLACES[code] = name
+			}
+		}
+		return placeMap
+	}
+
+	function flightResponse(data) {
+		// console.log(data)
+		var placeMap = makePlaceMap(data['Places'])
+		var query = data['Query']
+		var origin = placeMap[query['OriginPlace']]['Code']
+		var destination = placeMap[query['DestinationPlace']]['Code']
+		var itineraries = data['Itineraries']
+		var minCost = null
+		var minUrl = null
+		for (var i = 0; i < itineraries.length; i++) {
+			var next = itineraries[i]
+			var pricingOptions = next['PricingOptions']
+			var bestOption = getBestOption(pricingOptions)
+			var optionCost = bestOption['Price']
+			if(minCost == null) {
+				minCost = optionCost
+				minUrl = bestOption['DeeplinkUrl']
+			}
+			if(optionCost != null && optionCost < minCost) {
+				minCost = optionCost
+				minUrl = bestOption['DeeplinkUrl']
+			}
+		}
+		addResult({
+			'from':origin,
+			'to':destination,
+			'price':minCost,
+			'url':minUrl
+		})
+	}
+	
+</script>
+</body>
