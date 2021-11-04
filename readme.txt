@@ -13,3 +13,9 @@ cd <the path of your file>
 git add *
 git commit -m 'your message'
 git push
+
+
+How to run local:
+./runLocal.sh
+then go to chrome
+URL: http://localhost:8000/
